@@ -1,13 +1,13 @@
-from .tender import Tender
-from .vendor import Vendor
-from .anomaly import Anomaly
-from .director import Director
-from .price_benchmark import PriceBenchmark
-from .report import Report
-from .alert import Alert
-from .audit_finding import AuditFinding
-from .contract import Contract
-from .user import User
+from models.tender import Tender
+from models.vendor import Vendor
+from models.anomaly import Anomaly
+from models.director import Director
+from models.price_benchmark import PriceBenchmark
+from models.report import Report
+from models.alert import Alert
+from models.audit_finding import AuditFinding
+from models.contract import Contract
+from models.user import User
 
 __all__ = [
     "Tender", "Vendor", "Anomaly", "Director", "PriceBenchmark",

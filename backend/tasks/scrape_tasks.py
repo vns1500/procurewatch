@@ -1,8 +1,8 @@
 import asyncio
 import httpx
 import structlog
-from .celery_app import celery
-from ..scrapers.gem import GEMScraper, generate_synthetic_orders
+from tasks.celery_app import celery
+from scrapers.gem import GEMScraper, generate_synthetic_orders
 
 logger = structlog.get_logger(__name__)
 

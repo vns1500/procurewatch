@@ -3,7 +3,7 @@ import secrets
 from sqlalchemy import Column, String, Integer, TIMESTAMP
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.sql import func
-from ..core.database import Base
+from core.database import Base
 
 
 class User(Base):

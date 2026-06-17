@@ -9,9 +9,9 @@ from pydantic import BaseModel
 from sqlalchemy import select, func
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from ...core.database import get_db
-from ...models.vendor import Vendor
-from ...models.tender import Tender
+from core.database import get_db
+from models.vendor import Vendor
+from models.tender import Tender
 
 logger = structlog.get_logger(__name__)
 router = APIRouter(prefix="/vendors", tags=["vendors"])

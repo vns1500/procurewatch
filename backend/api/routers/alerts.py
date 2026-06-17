@@ -9,8 +9,8 @@ from pydantic import BaseModel, EmailStr
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from ...core.database import get_db
-from ...models.alert import Alert
+from core.database import get_db
+from models.alert import Alert
 
 logger = structlog.get_logger(__name__)
 router = APIRouter(prefix="/alerts", tags=["alerts"])

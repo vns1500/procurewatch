@@ -7,10 +7,10 @@ from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 
-from ..core.database import engine, Base
-from ..core.config import settings
-from ..models import *  # noqa: F401, F403
-from .routers import tenders, dashboard, vendors, anomalies, reports, alerts, detection, billing, auth, export
+from core.database import engine, Base
+from core.config import settings
+from models import *  # noqa: F401, F403
+from api.routers import tenders, dashboard, vendors, anomalies, reports, alerts, detection, billing, auth, export
 
 structlog.configure(
     processors=[

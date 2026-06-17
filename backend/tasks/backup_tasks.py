@@ -9,8 +9,8 @@ from urllib.parse import urlparse
 
 import structlog
 
-from .celery_app import celery_app
-from ..core.config import settings
+from tasks.celery_app import celery_app
+from core.config import settings
 
 logger = structlog.get_logger(__name__)
 

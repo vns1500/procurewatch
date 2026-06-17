@@ -7,9 +7,9 @@ from pydantic import BaseModel
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from ...core.config import settings
-from ...core.database import get_db
-from ...models.user import User
+from core.config import settings
+from core.database import get_db
+from models.user import User
 
 logger = structlog.get_logger(__name__)
 router = APIRouter(prefix="/auth", tags=["auth"])

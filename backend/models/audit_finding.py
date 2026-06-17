@@ -2,7 +2,7 @@ import uuid
 from sqlalchemy import Column, String, Text, BigInteger, Integer, TIMESTAMP
 from sqlalchemy.dialects.postgresql import UUID, JSONB
 from sqlalchemy.sql import func
-from ..core.database import Base
+from core.database import Base
 
 
 class AuditFinding(Base):

@@ -10,8 +10,8 @@ from fastapi.responses import Response
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from ...core.database import get_db
-from ...models.report import Report
+from core.database import get_db
+from models.report import Report
 
 logger = structlog.get_logger(__name__)
 router = APIRouter(prefix="/export", tags=["export"])

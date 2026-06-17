@@ -11,11 +11,11 @@ from pydantic import BaseModel
 from sqlalchemy import select, func
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from ...core.database import get_db
-from ...models.tender import Tender
-from ...models.vendor import Vendor
-from ...models.anomaly import Anomaly
-from ...models.price_benchmark import PriceBenchmark
+from core.database import get_db
+from models.tender import Tender
+from models.vendor import Vendor
+from models.anomaly import Anomaly
+from models.price_benchmark import PriceBenchmark
 
 logger = structlog.get_logger(__name__)
 router = APIRouter(prefix="/detection", tags=["detection"])

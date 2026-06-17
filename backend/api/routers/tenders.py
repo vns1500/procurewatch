@@ -13,11 +13,11 @@ from sqlalchemy import String
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import selectinload
 
-from ...core.database import get_db
-from ...models.tender import Tender
-from ...models.vendor import Vendor
-from ...models.anomaly import Anomaly
-from ...scrapers.gem import GEMScraper, generate_synthetic_orders
+from core.database import get_db
+from models.tender import Tender
+from models.vendor import Vendor
+from models.anomaly import Anomaly
+from scrapers.gem import GEMScraper, generate_synthetic_orders
 
 logger = structlog.get_logger(__name__)
 router = APIRouter(prefix="/tenders", tags=["tenders"])

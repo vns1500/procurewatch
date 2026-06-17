@@ -1,6 +1,6 @@
 from celery import Celery
 from celery.schedules import crontab
-from ..core.config import settings
+from core.config import settings
 
 celery = Celery(
     "procurewatch",

@@ -3,7 +3,7 @@ from sqlalchemy import Column, String, Integer, BigInteger, Date, ARRAY, TIMESTA
 from sqlalchemy.dialects.postgresql import UUID, JSONB
 from sqlalchemy.sql import func
 from sqlalchemy.orm import relationship
-from ..core.database import Base
+from core.database import Base
 
 
 class Tender(Base):

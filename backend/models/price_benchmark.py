@@ -2,7 +2,7 @@ import uuid
 from sqlalchemy import Column, String, Text, BigInteger, TIMESTAMP
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.sql import func
-from ..core.database import Base
+from core.database import Base
 
 
 class PriceBenchmark(Base):

@@ -10,9 +10,9 @@ from pydantic import BaseModel
 from sqlalchemy import select, func, and_
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from ...core.database import get_db
-from ...models.anomaly import Anomaly
-from ...models.tender import Tender
+from core.database import get_db
+from models.anomaly import Anomaly
+from models.tender import Tender
 
 logger = structlog.get_logger(__name__)
 router = APIRouter(prefix="/anomalies", tags=["anomalies"])
