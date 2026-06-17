@@ -34,7 +34,7 @@ structlog.configure(
 logger = structlog.get_logger(__name__)
 
 # Sentry (no-op when DSN is empty)
-if settings.SENTRY_DSN:
+if settings.SENTRY_DSN and settings.SENTRY_DSN not in ("", "CHANGE_ME"):
     import sentry_sdk
     from sentry_sdk.integrations.fastapi import FastApiIntegration
     from sentry_sdk.integrations.asyncio import AsyncioIntegration
