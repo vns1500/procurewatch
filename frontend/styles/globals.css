@@ -1,0 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-base:        #0A0B0E;
+  --bg-surface:     #111318;
+  --bg-elevated:    #1A1D24;
+  --border-subtle:  #1F2330;
+  --border-active:  #2D3348;
+  --accent-red:     #E8304A;
+  --accent-amber:   #F5A623;
+  --accent-green:   #22C55E;
+  --accent-blue:    #3B82F6;
+  --text-primary:   #F0F2F7;
+  --text-secondary: #8B93A7;
+  --text-muted:     #4A5168;
+  --mono-accent:    #00FF88;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  background: var(--bg-base);
+  color: var(--text-primary);
+  font-family: 'Space Grotesk', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::-webkit-scrollbar { width: 2px; height: 2px; }
+::-webkit-scrollbar-track { background: var(--bg-base); }
+::-webkit-scrollbar-thumb { background: var(--border-active); border-radius: 1px; }
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--bg-elevated) 25%,
+    var(--border-subtle) 37%,
+    var(--bg-elevated) 63%
+  );
+  background-size: 400% 100%;
+  animation: shimmer 1.4s ease infinite;
+}
+
+.mono {
+  font-family: 'JetBrains Mono', monospace;
+}
