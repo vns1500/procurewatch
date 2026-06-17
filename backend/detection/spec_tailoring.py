@@ -10,7 +10,7 @@ import numpy as np
 import structlog
 
 if TYPE_CHECKING:
-    from ..models.tender import Tender
+    from models.tender import Tender
     from sqlalchemy.ext.asyncio import AsyncSession
 
 logger = structlog.get_logger(__name__)

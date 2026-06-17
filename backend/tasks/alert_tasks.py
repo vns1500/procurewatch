@@ -9,8 +9,8 @@ from typing import TYPE_CHECKING
 import structlog
 
 if TYPE_CHECKING:
-    from ..models.alert import Alert
-    from ..models.anomaly import Anomaly
+    from models.alert import Alert
+    from models.anomaly import Anomaly
 
 logger = structlog.get_logger(__name__)
 
@@ -80,8 +80,8 @@ class AlertMatcher:
         tender_lookup: dict[str, dict],
     ) -> None:
         """Match new anomalies against active alerts and dispatch emails."""
-        from ..core.database import AsyncSessionLocal
-        from ..models.alert import Alert
+        from core.database import AsyncSessionLocal
+        from models.alert import Alert
         from sqlalchemy import select
 
         async with AsyncSessionLocal() as db:
@@ -138,7 +138,7 @@ class AlertMatcher:
         anomalies: list["Anomaly"],
         tender_lookup: dict[str, dict],
     ) -> None:
-        from ..core.config import settings
+        from core.config import settings
 
         if not settings.RESEND_API_KEY:
             logger.warning("resend_not_configured_skipping_email")
@@ -178,9 +178,9 @@ async def check_alerts_after_detection(new_anomaly_ids: list[str]) -> None:
     if not new_anomaly_ids:
         return
 
-    from ..core.database import AsyncSessionLocal
-    from ..models.anomaly import Anomaly
-    from ..models.tender import Tender
+    from core.database import AsyncSessionLocal
+    from models.anomaly import Anomaly
+    from models.tender import Tender
     from sqlalchemy import select
     import uuid
 

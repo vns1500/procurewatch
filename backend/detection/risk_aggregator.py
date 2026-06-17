@@ -27,7 +27,7 @@ RISK_CONTRIBUTIONS: dict[str, int] = {
 
 async def compute_final_risk_score(tender_id: uuid.UUID, db: "AsyncSession") -> int:
     from sqlalchemy import select
-    from ..models.anomaly import Anomaly
+    from models.anomaly import Anomaly
 
     result = await db.execute(
         select(Anomaly).where(Anomaly.tender_id == tender_id, Anomaly.status != "false_positive")
@@ -44,8 +44,8 @@ async def compute_final_risk_score(tender_id: uuid.UUID, db: "AsyncSession") -> 
 async def update_all_risk_scores(db: "AsyncSession") -> int:
     """Recompute and persist risk scores for all tenders. Returns count updated."""
     from sqlalchemy import select, text
-    from ..models.tender import Tender
-    from ..models.anomaly import Anomaly
+    from models.tender import Tender
+    from models.anomaly import Anomaly
 
     tender_result = await db.execute(select(Tender.id))
     tender_ids = [row[0] for row in tender_result.all()]

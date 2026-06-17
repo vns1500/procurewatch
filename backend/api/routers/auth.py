@@ -101,7 +101,7 @@ async def require_report_quota(
         return  # Admin or anonymous — no limit
     if user.plan in ("pro", "enterprise"):
         return
-    from ...api.routers.billing import PLANS
+    from api.routers.billing import PLANS
     limit = PLANS["free"]["reports_per_month"]
     if user.reports_used_this_month >= limit:
         raise HTTPException(

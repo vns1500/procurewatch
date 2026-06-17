@@ -1,16 +1,25 @@
-import structlog
-import logging
-from contextlib import asynccontextmanager
-from typing import AsyncIterator, Any
+import sys
+print("ProcureWatch: starting import phase", flush=True)
 
-from fastapi import FastAPI, Request
-from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import JSONResponse
+try:
+    import structlog
+    import logging
+    from contextlib import asynccontextmanager
+    from typing import AsyncIterator, Any
 
-from core.database import engine, Base
-from core.config import settings
-from models import *  # noqa: F401, F403
-from api.routers import tenders, dashboard, vendors, anomalies, reports, alerts, detection, billing, auth, export
+    from fastapi import FastAPI, Request
+    from fastapi.middleware.cors import CORSMiddleware
+    from fastapi.responses import JSONResponse
+
+    from core.database import engine, Base
+    from core.config import settings
+    from models import *  # noqa: F401, F403
+    from api.routers import tenders, dashboard, vendors, anomalies, reports, alerts, detection, billing, auth, export
+
+    print("ProcureWatch: all imports OK", flush=True)
+except Exception as _import_err:
+    print(f"IMPORT ERROR: {_import_err}", flush=True)
+    sys.exit(1)
 
 structlog.configure(
     processors=[
@@ -54,7 +63,6 @@ app = FastAPI(
     description="Government procurement anomaly detection system",
     version="1.0.0",
     lifespan=lifespan,
-    # Hide docs in production
     docs_url=None if settings.is_production else "/docs",
     redoc_url=None if settings.is_production else "/redoc",
     openapi_url="/openapi.json",
@@ -101,15 +109,16 @@ app.include_router(billing.router)
 app.include_router(auth.router)
 app.include_router(export.router)
 
+print("ProcureWatch: app object ready, uvicorn will serve", flush=True)
+
 
 @app.get("/health")
 async def health() -> dict[str, Any]:
-    from sqlalchemy import text
-    from ..core.database import AsyncSessionLocal
-    import redis.asyncio as aioredis
-    from ..models.tender import Tender
-    from ..models.anomaly import Anomaly
+    from core.database import AsyncSessionLocal
+    from models.tender import Tender
+    from models.anomaly import Anomaly
     from sqlalchemy import select, func
+    import redis.asyncio as aioredis
 
     db_status = "connected"
     redis_status = "connected"

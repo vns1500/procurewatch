@@ -154,7 +154,7 @@ async def ingest_tenders(
     raw_tenders: list[RawTenderIngest],
     db: AsyncSession = Depends(get_db),
 ) -> dict[str, int]:
-    from ...detection.rules import run_all_rules, detect_bid_splitting
+    from detection.rules import run_all_rules, detect_bid_splitting
 
     log = logger.bind(incoming=len(raw_tenders))
     saved = 0

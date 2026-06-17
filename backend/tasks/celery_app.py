@@ -6,7 +6,7 @@ celery = Celery(
     "procurewatch",
     broker=settings.REDIS_URL,
     backend=settings.REDIS_URL,
-    include=["backend.tasks.scrape_tasks", "backend.tasks.backup_tasks"],
+    include=["tasks.scrape_tasks", "tasks.backup_tasks"],
 )
 
 celery.conf.update(
@@ -17,11 +17,11 @@ celery.conf.update(
     enable_utc=True,
     beat_schedule={
         "scrape-gem-daily": {
-            "task": "backend.tasks.scrape_tasks.scrape_gem_task",
+            "task": "tasks.scrape_tasks.scrape_gem_task",
             "schedule": crontab(hour=2, minute=0),   # 2 AM IST
         },
         "run-detection-hourly": {
-            "task": "backend.tasks.scrape_tasks.run_detection_task",
+            "task": "tasks.scrape_tasks.run_detection_task",
             "schedule": crontab(minute=30),           # :30 every hour
         },
         "backup-daily": {

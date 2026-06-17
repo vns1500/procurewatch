@@ -7,8 +7,8 @@ from typing import TYPE_CHECKING
 import structlog
 
 if TYPE_CHECKING:
-    from ..models.tender import Tender
-    from ..models.vendor import Vendor
+    from models.tender import Tender
+    from models.vendor import Vendor
 
 logger = structlog.get_logger(__name__)
 

@@ -12,8 +12,8 @@ import numpy as np
 import structlog
 
 if TYPE_CHECKING:
-    from ..models.tender import Tender
-    from ..models.price_benchmark import PriceBenchmark
+    from models.tender import Tender
+    from models.price_benchmark import PriceBenchmark
 
 logger = structlog.get_logger(__name__)
 

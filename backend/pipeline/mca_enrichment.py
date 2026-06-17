@@ -11,7 +11,7 @@ import structlog
 
 if TYPE_CHECKING:
     from sqlalchemy.ext.asyncio import AsyncSession
-    from ..models.vendor import Vendor
+    from models.vendor import Vendor
 
 logger = structlog.get_logger(__name__)
 
@@ -150,7 +150,7 @@ class MCA21Enricher:
         db: "AsyncSession",
     ) -> nx.Graph:
         from sqlalchemy import select, text
-        from ..models.vendor import Vendor as VendorModel
+        from models.vendor import Vendor as VendorModel
 
         result = await db.execute(
             select(VendorModel).where(VendorModel.id.in_(vendor_ids))
@@ -214,7 +214,7 @@ class MCA21Enricher:
 
 async def enrich_all_vendors(db: "AsyncSession") -> int:
     from sqlalchemy import select
-    from ..models.vendor import Vendor as VendorModel
+    from models.vendor import Vendor as VendorModel
 
     enricher = MCA21Enricher()
     result = await db.execute(select(VendorModel).limit(200))

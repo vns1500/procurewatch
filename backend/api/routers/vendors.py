@@ -172,7 +172,7 @@ async def get_vendor_network(
         return vendor.director_network_json
 
     try:
-        from ...pipeline.mca_enrichment import MCA21Enricher
+        from pipeline.mca_enrichment import MCA21Enricher
         enricher = MCA21Enricher()
         enrichment = await enricher.enrich_vendor(vendor, db)
         await db.commit()

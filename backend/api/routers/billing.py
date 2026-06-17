@@ -108,7 +108,7 @@ async def stripe_webhook(request: Request, stripe_signature: str = Header(None, 
     except stripe.error.SignatureVerificationError:
         raise HTTPException(status_code=400, detail="Invalid signature")
 
-    async with __import__("backend.core.database", fromlist=["AsyncSessionLocal"]).AsyncSessionLocal() as db:
+    async with __import__("core.database", fromlist=["AsyncSessionLocal"]).AsyncSessionLocal() as db:
         if event["type"] == "checkout.session.completed":
             session = event["data"]["object"]
             customer_email = session.get("customer_email") or session.get("customer_details", {}).get("email")

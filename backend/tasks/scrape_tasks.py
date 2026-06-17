@@ -9,7 +9,7 @@ logger = structlog.get_logger(__name__)
 API_BASE = "http://api:8000"
 
 
-@celery.task(name="backend.tasks.scrape_tasks.scrape_gem_task", bind=True, max_retries=3)
+@celery.task(name="tasks.scrape_tasks.scrape_gem_task", bind=True, max_retries=3)
 def scrape_gem_task(self) -> dict:
     log = logger.bind(task="scrape_gem")
     log.info("task_start")
@@ -48,13 +48,13 @@ def scrape_gem_task(self) -> dict:
         raise self.retry(exc=exc, countdown=60 * (2 ** self.request.retries))
 
 
-@celery.task(name="backend.tasks.scrape_tasks.scrape_cppp_task", bind=True, max_retries=3)
+@celery.task(name="tasks.scrape_tasks.scrape_cppp_task", bind=True, max_retries=3)
 def scrape_cppp_task(self) -> dict:
     log = logger.bind(task="scrape_cppp")
     log.info("task_start")
 
     async def _run():
-        from ..scrapers.cppp import CPPPScraper
+        from scrapers.cppp import CPPPScraper
         scraper = CPPPScraper()
         try:
             records = await scraper.scrape_tenders()
@@ -81,7 +81,7 @@ def scrape_cppp_task(self) -> dict:
         raise self.retry(exc=exc, countdown=60 * (2 ** self.request.retries))
 
 
-@celery.task(name="backend.tasks.scrape_tasks.run_detection_task", bind=True)
+@celery.task(name="tasks.scrape_tasks.run_detection_task", bind=True)
 def run_detection_task(self) -> dict:
     log = logger.bind(task="run_detection")
     log.info("detection_task_start")
@@ -102,7 +102,7 @@ def run_detection_task(self) -> dict:
         raise self.retry(exc=exc, countdown=30)
 
 
-@celery.task(name="backend.tasks.scrape_tasks.full_pipeline_task", bind=True)
+@celery.task(name="tasks.scrape_tasks.full_pipeline_task", bind=True)
 def full_pipeline_task(self) -> dict:
     """GEM + CPPP scrape → detection → notify. Runs as a chain."""
     log = logger.bind(task="full_pipeline")

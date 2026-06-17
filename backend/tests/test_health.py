@@ -11,14 +11,14 @@ def anyio_backend():
 
 @pytest.fixture
 async def client():
-    from backend.api.main import app
+    from api.main import app
     async with AsyncClient(transport=ASGITransport(app=app), base_url="http://test") as c:
         yield c
 
 
 @pytest.mark.anyio
 async def test_health_ok(client):
-    with patch("backend.api.main.AsyncSessionLocal") as mock_session_cls:
+    with patch("api.main.AsyncSessionLocal") as mock_session_cls:
         mock_session = AsyncMock()
         mock_session.__aenter__ = AsyncMock(return_value=mock_session)
         mock_session.__aexit__ = AsyncMock(return_value=False)

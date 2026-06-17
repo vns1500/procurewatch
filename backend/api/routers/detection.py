@@ -40,9 +40,9 @@ _run_status: dict[str, Any] = {}
 
 async def _run_full_pipeline(task_id: str, db_factory: Any) -> None:
     import time
-    from ...detection.pricing_model import PricingAnomalyDetector
-    from ...detection.risk_aggregator import update_all_risk_scores, update_vendor_risk_levels
-    from ...pipeline.mca_enrichment import enrich_all_vendors
+    from detection.pricing_model import PricingAnomalyDetector
+    from detection.risk_aggregator import update_all_risk_scores, update_vendor_risk_levels
+    from pipeline.mca_enrichment import enrich_all_vendors
 
     start = time.monotonic()
     _run_status[task_id] = {"status": "running", "started_at": start}
@@ -116,7 +116,7 @@ async def run_detection(
     background_tasks: BackgroundTasks,
     db: AsyncSession = Depends(get_db),
 ) -> DetectionRunResponse:
-    from ...core.database import AsyncSessionLocal
+    from core.database import AsyncSessionLocal
 
     task_id = str(uuid.uuid4())
     _run_status[task_id] = {"status": "queued"}
