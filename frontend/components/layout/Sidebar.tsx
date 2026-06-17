@@ -58,7 +58,7 @@ export function Sidebar() {
 
       <nav style={{ flex: 1, padding: "12px 0" }}>
         {NAV_ITEMS.map(({ href, label, icon: Icon }) => {
-          const active = pathname === href || pathname.startsWith(href + "/");
+          const active = pathname === href || (pathname?.startsWith(href + "/") ?? false);
           return (
             <Link
               key={href}

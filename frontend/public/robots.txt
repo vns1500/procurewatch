@@ -1,0 +1,13 @@
+User-agent: *
+Allow: /
+Allow: /pricing
+Allow: /api-docs
+
+Disallow: /dashboard
+Disallow: /reports
+Disallow: /tenders
+Disallow: /vendors
+Disallow: /anomalies
+Disallow: /alerts
+
+Sitemap: https://procurewatch.in/sitemap.xml
