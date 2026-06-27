@@ -261,20 +261,39 @@ docker-compose -f docker-compose.prod.yml up --build -d
 
 ```
 procurewatch/
-├── backend/                  # Python / FastAPI
+├── backend/                        # Python / FastAPI
+│   ├── alembic/                    # Database migration scripts
 │   ├── api/
-│   │   └── main.py           # FastAPI application entry point
+│   │   └── main.py                 # FastAPI application entry point
+│   ├── core/                       # Shared config, dependencies, utilities
+│   ├── detection/                  # Anomaly detection rule engine
+│   ├── models/                     # SQLAlchemy ORM models
+│   ├── pipeline/                   # Data processing pipeline
+│   ├── scrapers/                   # Tender data scrapers
 │   ├── tasks/
-│   │   └── celery_app.py     # Celery configuration
-│   ├── Dockerfile            # Development image
-│   └── Dockerfile.prod       # Production image
-├── frontend/                 # TypeScript / Next.js
-│   ├── Dockerfile            # Development image
-│   └── Dockerfile.prod       # Production image
-├── .env.example              # Environment variable template
-├── .env.prod                 # Production environment (git-ignored)
-├── docker-compose.yml        # Development stack
-├── docker-compose.prod.yml   # Production stack
+│   │   └── celery_app.py           # Celery app + task definitions
+│   ├── tests/                      # Backend test suite
+│   ├── Dockerfile                  # Development image
+│   ├── Dockerfile.prod             # Production image
+│   ├── alembic.ini                 # Alembic migration config
+│   └── railway.toml                # Railway deployment config
+├── frontend/                       # TypeScript / Next.js
+│   ├── app/                        # Next.js App Router pages
+│   ├── components/                 # Reusable UI components
+│   ├── lib/                        # API clients, helpers, utilities
+│   ├── pages/                      # Next.js Pages Router (if used)
+│   ├── public/                     # Static assets
+│   ├── styles/                     # Global CSS / Tailwind config
+│   ├── Dockerfile                  # Development image
+│   ├── Dockerfile.prod             # Production image
+│   ├── next.config.ts              # Next.js configuration
+│   ├── next-env.d.ts               # TypeScript env declarations
+│   ├── package.json
+│   └── postcss.config.js
+├── .env.example                    # Environment variable template
+├── .env.prod                       # Production environment (git-ignored)
+├── docker-compose.yml              # Development stack
+├── docker-compose.prod.yml         # Production stack
 └── README.md
 ```
 
